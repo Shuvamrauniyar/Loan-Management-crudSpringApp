@@ -2,6 +2,8 @@ package com.springboot.HSBCLoanManagement.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +26,11 @@ public class LoanDetailController {
 	@PostMapping("/applyLoan")
 	public ResponseEntity<LoanDetails> createLoanDetails(@RequestBody LoanDetails loan) {
 		return new ResponseEntity<LoanDetails>(loanDetailService.createLoanDetails(loan),HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/getLoan/{id}")
+	public ResponseEntity<LoanDetails> findLoanById(@PathVariable Long id){
+		
+		return new ResponseEntity<LoanDetails>(loanDetailService.findLoanById(id),HttpStatus.OK);
 	}
 }

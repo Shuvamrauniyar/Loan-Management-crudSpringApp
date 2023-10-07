@@ -9,6 +9,6 @@ import com.springboot.HSBCLoanManagement.model.LoanDetails;
 
 public interface LoanRepository extends JpaRepository<LoanDetails, Long>{
 
+	LoanDetails findLoanById(Long id);
 
-	
 }

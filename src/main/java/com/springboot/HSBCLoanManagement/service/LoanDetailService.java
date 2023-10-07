@@ -18,4 +18,9 @@ public class LoanDetailService {
 		return loanRepository.save(loanDetails);
 		
 	}
+	
+	public LoanDetails findLoanById(Long id) {
+		
+		return loanRepository.findLoanById(id);
+	}
 }
