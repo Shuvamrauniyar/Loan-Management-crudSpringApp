@@ -1,5 +1,7 @@
 package com.springboot.HSBCLoanManagement.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +34,10 @@ public class LoanDetailController {
 	public ResponseEntity<LoanDetails> findLoanById(@PathVariable Long id){
 		
 		return new ResponseEntity<LoanDetails>(loanDetailService.findLoanById(id),HttpStatus.OK);
+	}
+	@GetMapping("/getLoanByAccount/{accountNo}")
+	public ResponseEntity<List<LoanDetails>> findLoanByAccountNo(@PathVariable String accountNo){
+		
+		return new ResponseEntity<List<LoanDetails>>(loanDetailService.findLoanByAccountNo(accountNo),HttpStatus.OK);
 	}
 }

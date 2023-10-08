@@ -1,5 +1,7 @@
 package com.springboot.HSBCLoanManagement.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.springboot.HSBCLoanManagement.model.LoanDetails;
@@ -22,5 +24,9 @@ public class LoanDetailService {
 	public LoanDetails findLoanById(Long id) {
 		
 		return loanRepository.findLoanById(id);
+	}
+	
+	public List<LoanDetails> findLoanByAccountNo(String  accountNo) {
+		return loanRepository.findLoanByAccountNo(accountNo);
 	}
 }
