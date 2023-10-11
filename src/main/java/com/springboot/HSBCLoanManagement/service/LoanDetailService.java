@@ -1,6 +1,7 @@
 package com.springboot.HSBCLoanManagement.service;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,24 +14,25 @@ public class LoanDetailService {
 	
 	private LoanRepository loanRepository;
 	
-	public LoanDetailService(LoanRepository loanRepository) {
+	public LoanDetailService(LoanRepository loanRepository) throws SQLException, Exception{
 		this.loanRepository = loanRepository;
 	}
 	
-	public LoanDetails createLoanDetails(LoanDetails loanDetails) {
+	public LoanDetails createLoanDetails(LoanDetails loanDetails) throws SQLException, Exception{
 		return loanRepository.save(loanDetails);
 		
 	}
 	
-	public LoanDetails findLoanById(Long id) {
+	public LoanDetails findLoanById(Long id) throws SQLException, Exception{
 		
 		return loanRepository.findLoanById(id);
 	}
 	
-	public List<LoanDetails> findLoanByAccountNo(String  accountNo) {
+	public List<LoanDetails> findLoanByAccountNo(String  accountNo) throws SQLException, Exception{
 		return loanRepository.findLoanByAccountNo(accountNo);
 	}
-public LoanDetails updateDetails(LoanDetails loanDetails, Long id) {
+	
+	public LoanDetails updateDetails(LoanDetails loanDetails, Long id) throws SQLException, Exception{
 		
 		LoanDetails loan =   loanRepository.findLoanById(id);
 		
@@ -55,7 +57,7 @@ public LoanDetails updateDetails(LoanDetails loanDetails, Long id) {
  		return loanRepository.save(loan);	 
 	}
 
-	public void deleteByLoanId(Long id) {
+	public void deleteByLoanId(Long id) throws SQLException, Exception{
 		loanRepository.deleteById(id);
 		return ;
 	}

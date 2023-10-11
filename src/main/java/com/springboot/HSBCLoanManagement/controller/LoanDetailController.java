@@ -1,5 +1,6 @@
 package com.springboot.HSBCLoanManagement.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -29,27 +30,27 @@ public class LoanDetailController {
 	}
 	
 	@PostMapping("/applyLoan")
-	public ResponseEntity<LoanDetails> createLoanDetails(@RequestBody LoanDetails loan) {
+	public ResponseEntity<LoanDetails> createLoanDetails(@RequestBody LoanDetails loan) throws SQLException, Exception{
 		return new ResponseEntity<LoanDetails>(loanDetailService.createLoanDetails(loan),HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getLoan/{id}")
-	public ResponseEntity<LoanDetails> findLoanById(@PathVariable Long id){
+	public ResponseEntity<LoanDetails> findLoanById(@PathVariable Long id)throws SQLException, Exception{
 		
 		return new ResponseEntity<LoanDetails>(loanDetailService.findLoanById(id),HttpStatus.OK);
 	}
 	@GetMapping("/getLoanByAccount/{accountNo}")
-	public ResponseEntity<List<LoanDetails>> findLoanByAccountNo(@PathVariable String accountNo){
+	public ResponseEntity<List<LoanDetails>> findLoanByAccountNo(@PathVariable String accountNo) throws SQLException, Exception{
 		
 		return new ResponseEntity<List<LoanDetails>>(loanDetailService.findLoanByAccountNo(accountNo),HttpStatus.OK);
 	}
 	@PatchMapping("/updateLoan/{id}")
-	public ResponseEntity<LoanDetails> updateLoan(@RequestBody LoanDetails loan,@PathVariable Long id) {
+	public ResponseEntity<LoanDetails> updateLoan(@RequestBody LoanDetails loan,@PathVariable Long id) throws SQLException, Exception{
 		return new ResponseEntity<LoanDetails>(loanDetailService.updateDetails(loan,id),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deleteLoanRecord/{id}")
-	public ResponseEntity<String> deleteLoanRecord(@PathVariable Long id) {
+	public ResponseEntity<String> deleteLoanRecord(@PathVariable Long id) throws SQLException, Exception{
 		//System.out.println(findLoanById(id).getBody());
 		
 		if(findLoanById(id).getBody() != null)
