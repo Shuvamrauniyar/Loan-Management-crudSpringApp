@@ -54,4 +54,9 @@ public LoanDetails updateDetails(LoanDetails loanDetails, Long id) {
  		}
  		return loanRepository.save(loan);	 
 	}
+
+	public void deleteByLoanId(Long id) {
+		loanRepository.deleteById(id);
+		return ;
+	}
 }

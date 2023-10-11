@@ -3,7 +3,9 @@ package com.springboot.HSBCLoanManagement.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,4 +47,18 @@ public class LoanDetailController {
 	public ResponseEntity<LoanDetails> updateLoan(@RequestBody LoanDetails loan,@PathVariable Long id) {
 		return new ResponseEntity<LoanDetails>(loanDetailService.updateDetails(loan,id),HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/deleteLoanRecord/{id}")
+	public ResponseEntity<String> deleteLoanRecord(@PathVariable Long id) {
+		//System.out.println(findLoanById(id).getBody());
+		
+		if(findLoanById(id).getBody() != null)
+		{
+			loanDetailService.deleteByLoanId(id);
+			return ResponseEntity.ok("Deleted record successfully ");
+		}
+		return new ResponseEntity<String>("Bad request, LoanId not found",HttpStatus.BAD_REQUEST);
+	}
+	
+	
 }
